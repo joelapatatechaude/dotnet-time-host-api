@@ -48,6 +48,14 @@ components:
       size: 1G
 
 commands:
+  - id: 0-update-db
+    exec:
+      label: 0.Update db
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-time-host-api
+      commandLine: "dotnet tool restore && dotnet ef database update"
+      group:
+        kind: build
   - id: 1-update-dependencies
     exec:
       label: 1.Update dependencies
