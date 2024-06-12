@@ -80,3 +80,11 @@ commands:
       commandLine: "dotnet run"
       group:
         kind: run
+  - id: 4-truncate-time-table
+    exec:
+      label: 4.Truncate time table
+      component: mssql
+      workingDir: /opt/mssql-tools/bin/
+      commandLine: "./sqlcmd -U sa -P IloveOpenShift4 -d TimeDB -Q 'TRUNCATE TABLE TimeEntries;'"
+      group:
+        kind: run
