@@ -42,12 +42,23 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<TimeContext>();
-        context.Database.Migrate();
+        
+        // Check if the database exists and is accessible
+        if (context.Database.CanConnect())
+        {
+            // Apply any pending migrations
+            context.Database.Migrate();
+        }
+        else
+        {
+            // If the database doesn't exist, it will be created and then migrations applied
+            context.Database.EnsureCreated();
+        }
     }
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while migrating the database.");
+        logger.LogError(ex, "An error occurred while migrating or initializing the database.");
     }
 }
 
