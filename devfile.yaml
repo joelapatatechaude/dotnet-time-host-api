@@ -30,7 +30,7 @@ components:
         - name: MSSQL_SA_PASSWORD
           value: IloveOpenShift4
         - name: MSSQL_PID
-          value: 'Developer'
+          value: Developer
       endpoints:
         - name: mssql
           exposure: internal
