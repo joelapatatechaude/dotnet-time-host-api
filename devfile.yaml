@@ -28,9 +28,9 @@ components:
         - name: ACCEPT_EULA
           value: 'Y'
         - name: MSSQL_SA_PASSWORD
-          value: IloveOpenShift4
+          value: 'IloveOpenShift4'
         - name: MSSQL_PID
-          value: Developer
+          value: 'Developer'
       endpoints:
         - name: mssql
           exposure: internal
