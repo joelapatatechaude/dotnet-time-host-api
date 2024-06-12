@@ -1,6 +1,8 @@
 schemaVersion: 2.2.2
 metadata:
   name: dotnet-time-host-api
+variables:
+  mssqlsapassword: test
 components:
   - name: tools
     container:
@@ -35,6 +37,14 @@ components:
         - name: mssql
           exposure: internal
           targetPort: 1433
+      endpoints:
+        - name: mssql-udp
+          exposure: none
+          targetPort: 1434
+      endpoints:
+        - name: rgtp
+          exposure: none
+          targetPort: 1431
       memoryLimit: '3Gi'
       memoryRequest: '2Gi'
       cpuLimit: '1'
