@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj": {}
+    "/projects/dotnet-time-host-api/TimeApi.csproj": {}
   },
   "projects": {
-    "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj": {
+    "/projects/dotnet-time-host-api/TimeApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj",
+        "projectUniqueName": "/projects/dotnet-time-host-api/TimeApi.csproj",
         "projectName": "TimeApi",
-        "projectPath": "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj",
-        "packagesPath": "/home/cschmitz/.nuget/packages/",
-        "outputPath": "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/obj/",
+        "projectPath": "/projects/dotnet-time-host-api/TimeApi.csproj",
+        "packagesPath": "/home/user/.nuget/packages/",
+        "outputPath": "/projects/dotnet-time-host-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/cschmitz/.nuget/NuGet/NuGet.Config"
+          "/home/user/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -56,6 +51,8 @@
               "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.6, )"
             },
@@ -83,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/cschmitz/.dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
