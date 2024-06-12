@@ -21,6 +21,32 @@ components:
   - name: nuget
     volume:
       size: 1G
+  - name: mssql
+    container:
+      image: quay.io/rh_ee_cschmitz/mssql:latest
+      env:
+        - name: ACCEPT_EULA
+          value: 'Y'
+        - name: MSSQL_SA_PASSWORD
+          value: IloveOpenShift4
+        - name: MSSQL_PID
+          value: 'Developer'
+      endpoints:
+        - name: mssql
+          exposure: internal
+          targetPort: 1433
+      memoryLimit: '512Mi'
+      memoryRequest: '256Mi'
+      cpuLimit: '1'
+      cpuRequest: '0.25'
+      mountSources: true
+      volumeMounts:
+        - name: mssql-storage
+          path: /var/opt/mssql/data
+  - name: mssql-storage
+    volume:
+      size: 1G
+
 commands:
   - id: 1-update-dependencies
     exec:
