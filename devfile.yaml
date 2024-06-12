@@ -2,7 +2,7 @@ schemaVersion: 2.2.2
 metadata:
   name: dotnet-time-host-api
 variables:
-  mssqlsapassword: test
+  mssqlsapassword: IloveOpenShift4
 components:
   - name: tools
     container:
@@ -16,7 +16,8 @@ components:
         - exposure: public
           name: 'time-endpoint'
           protocol: https
-          targetPort: 5032
+          path: /api/time
+          targetPort: 8080
       volumeMounts:
         - name: nuget
           path: /home/user/.nuget
@@ -35,13 +36,11 @@ components:
           value: 'Developer'
       endpoints:
         - name: mssql
-          exposure: internal
+          exposure: none
           targetPort: 1433
-      endpoints:
         - name: mssql-udp
           exposure: none
           targetPort: 1434
-      endpoints:
         - name: rgtp
           exposure: none
           targetPort: 1431
@@ -98,3 +97,11 @@ commands:
       commandLine: "./sqlcmd -U sa -P IloveOpenShift4 -d TimeDB -Q 'TRUNCATE TABLE TimeEntries;'"
       group:
         kind: run
+  - id: 5-podman-build
+    exec:
+      label: 5.Podman build
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-time-host-api
+      commandLine: "podman-wrapper.sh build . -t quay.io/rh_ee_cschmitz/dotnet-time-host-api:latest"
+      group:
+        kind: build
