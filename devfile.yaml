@@ -40,9 +40,9 @@ components:
       cpuLimit: '1'
       cpuRequest: '0.25'
       mountSources: true
-      volumeMounts:
-        - name: mssql-storage
-          path: /var/opt/mssql/data
+      #volumeMounts:
+      #  - name: mssql-storage
+      #    path: /var/opt/mssql/data
   - name: mssql-storage
     volume:
       size: 1G
