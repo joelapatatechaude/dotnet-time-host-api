@@ -121,3 +121,17 @@ commands:
       commandLine: "podman-wrapper.sh push {{apiimage}}"
       group:
         kind: build
+  - id: 8-podman-build-and-push
+    composite:
+      label: 8.Podman build and push
+      commands:
+        - 5-podman-build
+        - 7-podman-push
+      parallel: false
+
+  - id: 9-podman-build-and-push
+    exec:
+      label: 9.Podman build and push
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-time-host-api
+      commandLine: "podman-wrapper.sh build . -t {{apiimage}} && podman-wrapper.sh push {{apiimage}}"

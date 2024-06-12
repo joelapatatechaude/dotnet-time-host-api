@@ -22,10 +22,12 @@ public class TimeController : ControllerBase
     public async Task<IActionResult> GetTime()
     {
         var localTime = DateTime.Now;
+        var hostname = Environment.GetEnvironmentVariable("HOSTNAME") ?? Dns.GetHostName();
+
         var timeEntry = new TimeEntry
         {
             DateTime = localTime,
-            HostName = Dns.GetHostName()
+            HostName = hostname
         };
 
         _context.TimeEntries.Add(timeEntry);
