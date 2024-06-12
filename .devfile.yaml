@@ -1,6 +1,6 @@
 schemaVersion: 2.2.2
 metadata:
-  name: dotnet
+  name: dotnet-time-host-api
 components:
   - name: tools
     container:
