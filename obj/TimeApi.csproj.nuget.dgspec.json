@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/cschmitz/joelapatatechaude/TimeApi/TimeApi.csproj": {}
+    "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj": {}
   },
   "projects": {
-    "/home/cschmitz/joelapatatechaude/TimeApi/TimeApi.csproj": {
+    "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cschmitz/joelapatatechaude/TimeApi/TimeApi.csproj",
+        "projectUniqueName": "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj",
         "projectName": "TimeApi",
-        "projectPath": "/home/cschmitz/joelapatatechaude/TimeApi/TimeApi.csproj",
+        "projectPath": "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/TimeApi.csproj",
         "packagesPath": "/home/cschmitz/.nuget/packages/",
-        "outputPath": "/home/cschmitz/joelapatatechaude/TimeApi/obj/",
+        "outputPath": "/home/cschmitz/joelapatatechaude/dotnet-time-host-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/cschmitz/.nuget/NuGet/NuGet.Config"
@@ -44,6 +44,18 @@
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[8.0.6, )"
             },
