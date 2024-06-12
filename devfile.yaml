@@ -35,8 +35,8 @@ components:
         - name: mssql
           exposure: internal
           targetPort: 1433
-      memoryLimit: '512Mi'
-      memoryRequest: '256Mi'
+      memoryLimit: '3Gi'
+      memoryRequest: '2Gi'
       cpuLimit: '1'
       cpuRequest: '0.25'
       mountSources: false
