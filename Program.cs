@@ -2,12 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Text.Json.Serialization;
 using TimeApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
+
+// Register the DbContext with the connection string from configuration
 builder.Services.AddDbContext<TimeContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -22,7 +29,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Register Swagger services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -55,9 +62,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
-
-// Use CORS policy
 app.UseCors();
+
+app.MapControllers();
 
 app.Run();
