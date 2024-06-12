@@ -26,9 +26,9 @@ components:
       image: quay.io/rh_ee_cschmitz/mssql:latest
       env:
         - name: ACCEPT_EULA
-          value: 'Y'
+          value: Y
         - name: MSSQL_SA_PASSWORD
-          value: 'IloveOpenShift4'
+          value: IloveOpenShift4
         - name: MSSQL_PID
           value: 'Developer'
       endpoints:
@@ -39,7 +39,7 @@ components:
       memoryRequest: '256Mi'
       cpuLimit: '1'
       cpuRequest: '0.25'
-      mountSources: true
+      mountSources: false
       #volumeMounts:
       #  - name: mssql-storage
       #    path: /var/opt/mssql/data
