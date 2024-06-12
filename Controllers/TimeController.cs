@@ -44,4 +44,28 @@ public class TimeController : ControllerBase
 
         return Ok(history);
     }
+
+    // Catch-all route for api/time to list allowed methods with clickable links
+    [HttpGet]
+    public ContentResult Get()
+    {
+        var responseHtml = @"
+        <html>
+            <body>
+                <h2>Allowed methods are:</h2>
+                <ul>
+                    <li><a href='/api/time/time'>GET /api/time/time</a></li>
+                    <li><a href='/api/time/history'>GET /api/time/history</a></li>
+                </ul>
+            </body>
+        </html>";
+
+        return new ContentResult
+        {
+            ContentType = "text/html",
+            StatusCode = 200,
+            Content = responseHtml
+        };
+    }
 }
+

@@ -3,6 +3,7 @@ metadata:
   name: dotnet-time-host-api
 variables:
   mssqlsapassword: IloveOpenShift4
+  apiimage: quay.io/rh_ee_cschmitz/dotnet-time-host-api:latest
 components:
   - name: tools
     container:
@@ -31,7 +32,7 @@ components:
         - name: ACCEPT_EULA
           value: Y
         - name: MSSQL_SA_PASSWORD
-          value: IloveOpenShift4
+          value: '{{IloveOpenShift4}}'
         - name: MSSQL_PID
           value: 'Developer'
       endpoints:
@@ -94,7 +95,7 @@ commands:
       label: 4.Truncate time table
       component: mssql
       workingDir: /opt/mssql-tools/bin/
-      commandLine: "./sqlcmd -U sa -P IloveOpenShift4 -d TimeDB -Q 'TRUNCATE TABLE TimeEntries;'"
+      commandLine: "./sqlcmd -U sa -P {{mssqlsapassword}} -d TimeDB -Q 'TRUNCATE TABLE TimeEntries;'"
       group:
         kind: run
   - id: 5-podman-build
@@ -102,6 +103,22 @@ commands:
       label: 5.Podman build
       component: tools
       workingDir: ${PROJECTS_ROOT}/dotnet-time-host-api
-      commandLine: "podman-wrapper.sh build . -t quay.io/rh_ee_cschmitz/dotnet-time-host-api:latest"
+      commandLine: "podman-wrapper.sh build . -t {{apiimage}}"
+      group:
+        kind: build
+  - id: 6-podman-login
+    exec:
+      label: 6.Podman login
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-time-host-api
+      commandLine: "podman-wrapper.sh login quay.io"
+      group:
+        kind: build
+  - id: 7-podman-push
+    exec:
+      label: 7.Podman push
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/dotnet-time-host-api
+      commandLine: "podman-wrapper.sh push {{apiimage}}"
       group:
         kind: build
