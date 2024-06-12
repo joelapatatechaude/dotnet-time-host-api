@@ -1,8 +1,10 @@
 #!/bin/bash
 
+echo "hello"
+ls /app/tools
 set -e
 run_cmd="dotnet TimeApi.dll"
-
+#dotnet tool restore
 until dotnet ef database update; do
 >&2 echo "SQL Server is starting up"
 sleep 1
