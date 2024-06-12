@@ -21,25 +21,10 @@ public class TimeController : ControllerBase
     [HttpGet("time")]
     public async Task<IActionResult> GetTime()
     {
-        DateTime sydneyTime;
-        try
-        {
-            sydneyTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Australia/Sydney"));
-        }
-        catch (TimeZoneNotFoundException)
-        {
-            // Handle the case where the time zone ID is not found
-            return StatusCode(500, "The time zone ID 'Australia/Sydney' was not found on the local computer.");
-        }
-        catch (InvalidTimeZoneException)
-        {
-            // Handle the case where the time zone data is corrupt
-            return StatusCode(500, "The time zone data is invalid or corrupt.");
-        }
-
+        var localTime = DateTime.Now;
         var timeEntry = new TimeEntry
         {
-            DateTime = sydneyTime,
+            DateTime = localTime,
             HostName = Dns.GetHostName()
         };
 
