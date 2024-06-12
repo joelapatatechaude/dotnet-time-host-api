@@ -2,7 +2,6 @@ schemaVersion: 2.2.2
 metadata:
   name: dotnet-time-host-api
 variables:
-  mssqlsapassword: IloveOpenShift4
   apiimage: quay.io/rh_ee_cschmitz/dotnet-time-host-api:latest
 components:
   - name: tools
@@ -32,7 +31,7 @@ components:
         - name: ACCEPT_EULA
           value: Y
         - name: MSSQL_SA_PASSWORD
-          value: '{{IloveOpenShift4}}'
+          value: IloveOpenShift4
         - name: MSSQL_PID
           value: 'Developer'
       endpoints:
@@ -95,7 +94,7 @@ commands:
       label: 4.Truncate time table
       component: mssql
       workingDir: /opt/mssql-tools/bin/
-      commandLine: "./sqlcmd -U sa -P {{mssqlsapassword}} -d TimeDB -Q 'TRUNCATE TABLE TimeEntries;'"
+      commandLine: "./sqlcmd -U sa -P IloveOpenShift4 -d TimeDB -Q 'TRUNCATE TABLE TimeEntries;'"
       group:
         kind: run
   - id: 5-podman-build
